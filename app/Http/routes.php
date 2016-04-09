@@ -11,6 +11,11 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
+$app->group([
+	'middleware' => [],
+	'prefix' => 'api/1.0',
+	'as' => 'api::1.0::',
+	'namespace' => 'App\Http\Controllers',
+	], function() use ($app) {
+		$app->get('stop/{stop}', ['as' => 'stop', 'uses' => 'ApiController@stop']);
 });
